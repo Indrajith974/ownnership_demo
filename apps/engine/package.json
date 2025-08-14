@@ -1,0 +1,11 @@
+{
+  "name": "@ownership-layer/engine",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "python -m uvicorn main:app --reload --port 8001",
+    "start": "python -m uvicorn main:app --port 8001",
+    "install": "pip install -r requirements.txt"
+  },
+  "description": "AI Fingerprinting Engine for The Ownership Layer"
+}

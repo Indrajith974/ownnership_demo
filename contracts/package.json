@@ -1,0 +1,42 @@
+{
+  "name": "ownership-layer-contracts",
+  "version": "1.0.0",
+  "description": "Smart contracts for The Ownership Layer - Proof of Creation NFTs",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:localhost": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:mumbai": "hardhat run scripts/deploy.js --network polygonMumbai",
+    "deploy:polygon": "hardhat run scripts/deploy.js --network polygon",
+    "deploy:base-sepolia": "hardhat run scripts/deploy.js --network baseSepolia",
+    "deploy:base": "hardhat run scripts/deploy.js --network base",
+    "deploy:testnet": "hardhat run scripts/deploy-testnet.js --network baseSepolia",
+    "upload:ipfs": "node scripts/upload-metadata.js",
+    "verify:mumbai": "hardhat verify --network polygonMumbai",
+    "verify:polygon": "hardhat verify --network polygon",
+    "verify:base-sepolia": "hardhat verify --network baseSepolia",
+    "verify:base": "hardhat verify --network base",
+    "node": "hardhat node",
+    "clean": "hardhat clean"
+  },
+  "keywords": [
+    "nft",
+    "ownership",
+    "proof-of-creation",
+    "blockchain",
+    "content-attribution"
+  ],
+  "author": "The Ownership Layer Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@openzeppelin/contracts": "^4.9.0",
+    "hardhat": "^2.17.0",
+    "dotenv": "^16.3.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.0",
+    "web3.storage": "^4.5.5"
+  }
+}

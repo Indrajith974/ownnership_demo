@@ -1,0 +1,11 @@
+{
+  "name": "@ownership-layer/playground",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "python -m streamlit run main.py --server.port 8002",
+    "start": "python -m streamlit run main.py --server.port 8002",
+    "install": "pip install -r requirements.txt"
+  },
+  "description": "Interactive playground and testing environment for The Ownership Layer"
+}
