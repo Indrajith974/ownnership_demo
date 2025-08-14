@@ -1,7 +1,8 @@
 'use client';
 
+import React, { useState, useEffect } from 'react';
 import { useMintOwnershipNFT } from '@/hooks/use-mint-ownership-nft';
-import { useAccount } from 'wagmi';
+import { useAccount, useChainId } from 'wagmi';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -12,13 +13,16 @@ import {
   CheckCircle, 
   XCircle, 
   ExternalLink, 
-  RefreshCw,
   Wallet,
   AlertTriangle,
   Trophy,
-  Hash
+  Hash,
+  AlertCircle,
+  Award,
+  Sparkles,
+  Zap
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 
 interface MintButtonProps {
@@ -67,7 +71,7 @@ export function MintButton({
   onMintError
 }: MintButtonProps) {
   const { address, isConnected } = useAccount();
-  const { chain } = useNetwork();
+  const chainId = useChainId();
   const [showConfetti, setShowConfetti] = useState(false);
   
   const {
@@ -130,8 +134,8 @@ export function MintButton({
   };
 
   const getExplorerUrl = (hash: string) => {
-    if (!chain?.id || !CHAIN_EXPLORERS[chain.id]) return null;
-    return `${CHAIN_EXPLORERS[chain.id]}/tx/${hash}`;
+    if (!chainId || !CHAIN_EXPLORERS[chainId]) return null;
+    return `${CHAIN_EXPLORERS[chainId]}/tx/${hash}`;
   };
 
   // Not connected state
@@ -202,7 +206,7 @@ export function MintButton({
               )}
               
               <p className="text-sm text-green-700">
-                Network: {CHAIN_NAMES[chain?.id || 0] || 'Unknown'}
+                Network: {CHAIN_NAMES[chainId] || 'Unknown'}
               </p>
               
               {txHash && (
@@ -344,7 +348,7 @@ export function MintButton({
               
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium">Network</span>
-                <Badge variant="outline">{CHAIN_NAMES[chain?.id || 0] || 'Unknown'}</Badge>
+                <Badge variant="outline">{CHAIN_NAMES[chainId] || 'Unknown'}</Badge>
               </div>
               
               {authorHandle && (

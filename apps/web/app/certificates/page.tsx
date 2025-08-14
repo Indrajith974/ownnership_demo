@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useSiweAuth } from '@/hooks/use-siwe-auth';
 import { useAccount } from 'wagmi';
 import { 
-  Certificate, 
+  Award, 
   ExternalLink, 
   Search, 
   Filter, 
@@ -18,7 +18,6 @@ import {
   Wallet,
   Eye,
   RefreshCw,
-  Award,
   Zap
 } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
@@ -170,7 +169,7 @@ export default function CertificatesPage() {
       <div className="container mx-auto px-4 py-8">
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
-            <Certificate className="w-12 h-12 text-muted-foreground mb-4" />
+            <Award className="w-12 h-12 text-muted-foreground mb-4" />
             <h2 className="text-xl font-semibold mb-2">Sign In Required</h2>
             <p className="text-muted-foreground text-center">
               Please sign in with your wallet to access your certificates.
@@ -187,7 +186,7 @@ export default function CertificatesPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold flex items-center">
-            <Certificate className="w-8 h-8 mr-3" />
+            <Award className="w-8 h-8 mr-3" />
             My Certificates
           </h1>
           <p className="text-muted-foreground">
@@ -209,7 +208,7 @@ export default function CertificatesPage() {
                 <p className="text-sm text-muted-foreground">Total Certificates</p>
                 <p className="text-2xl font-bold">{certificates.length}</p>
               </div>
-              <Certificate className="w-8 h-8 text-blue-500" />
+              <Award className="w-8 h-8 text-blue-500" />
             </div>
           </CardContent>
         </Card>
@@ -306,7 +305,7 @@ export default function CertificatesPage() {
       ) : filteredCertificates.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
-            <Certificate className="w-12 h-12 text-muted-foreground mb-4" />
+            <Award className="w-12 h-12 text-muted-foreground mb-4" />
             <h3 className="text-lg font-semibold mb-2">No Certificates Found</h3>
             <p className="text-muted-foreground text-center">
               {certificates.length === 0 
@@ -421,7 +420,7 @@ export default function CertificatesPage() {
                     variant="outline"
                     onClick={() => window.open(`/proof/${certificate.content_hash}`, '_blank')}
                   >
-                    <Certificate className="w-3 h-3 mr-1" />
+                    <Award className="w-3 h-3 mr-1" />
                     Proof
                   </Button>
                 </div>

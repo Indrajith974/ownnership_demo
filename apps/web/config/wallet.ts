@@ -9,21 +9,40 @@ import {
   baseSepolia,
   polygonMumbai,
 } from 'wagmi/chains';
+import { http } from 'wagmi';
+
+// Validate WalletConnect Project ID
+const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
+if (!projectId || projectId === 'your-project-id') {
+  console.error('❌ WalletConnect Project ID is missing or invalid!');
+  console.log('Please set NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID in your .env.local file');
+}
+
+// Define chains with proper configuration
+const chains = [
+  mainnet,
+  polygon,
+  base,
+  ...(process.env.NODE_ENV === 'development' ? [sepolia, baseSepolia, polygonMumbai] : []),
+] as const;
 
 // Wallet configuration for The Ownership Layer
 export const walletConfig = getDefaultConfig({
   appName: 'The Ownership Layer',
-  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'your-project-id',
-  chains: [
-    mainnet,
-    polygon,
-    optimism,
-    arbitrum,
-    base,
-    ...(process.env.NODE_ENV === 'development' ? [sepolia, baseSepolia, polygonMumbai] : []),
-  ],
-  ssr: true, // If your dApp uses server side rendering (SSR)
+  projectId: projectId!,
+  chains,
+  transports: {
+    [mainnet.id]: http(),
+    [polygon.id]: http(),
+    [base.id]: http(),
+    [sepolia.id]: http(),
+    [baseSepolia.id]: http(),
+    [polygonMumbai.id]: http(),
+  },
+  ssr: true,
 });
+
+console.log('✅ Wallet config initialized with Project ID:', projectId?.slice(0, 8) + '...');
 
 // Chain configuration for different environments
 export const SUPPORTED_CHAINS = {

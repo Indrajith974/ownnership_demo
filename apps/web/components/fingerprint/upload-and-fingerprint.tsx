@@ -78,7 +78,6 @@ export function UploadAndFingerprint({
   const [isDragOver, setIsDragOver] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [progress, setProgress] = useState(0);
   const [currentFile, setCurrentFile] = useState<File | null>(null);
   const [fingerprintResult, setFingerprintResult] = useState<FingerprintResult | null>(null);
   const [error, setError] = useState<string | null>(null);

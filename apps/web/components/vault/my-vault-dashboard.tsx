@@ -8,12 +8,11 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { 
-  Vault,
+  Shield,
   Search,
   Filter,
   Download,
   ExternalLink,
-  Shield,
   Hash,
   Calendar,
   FileText,
@@ -309,7 +308,7 @@ export function MyVaultDashboard() {
       <div className="container mx-auto px-4 py-8">
         <Card>
           <CardContent className="p-8 text-center">
-            <Vault className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
+            <Shield className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
             <h2 className="text-2xl font-bold mb-2">Access Your Vault</h2>
             <p className="text-muted-foreground mb-6">
               Connect your wallet or sign in with email to view your ownership vault
@@ -355,16 +354,19 @@ export function MyVaultDashboard() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold flex items-center">
-              <Vault className="w-8 h-8 mr-3" />
+              <Shield className="w-8 h-8 mr-3" />
               My Vault
             </h1>
             <p className="text-muted-foreground mt-1">
               Manage your digital ownership certificates and NFTs
             </p>
             {currentUser && (
-              <p className="text-sm text-muted-foreground mt-1">
-                {currentUser.type === 'wallet' ? '🔗' : '📧'} {currentUser.identifier}
-              </p>
+              <div>
+                <Shield className="w-12 h-12 text-muted-foreground mb-4" />
+                <p>
+                  {currentUser.type === 'wallet' ? '🔗' : '📧'} {currentUser.identifier}
+                </p>
+              </div>
             )}
           </div>
           <div className="text-right">

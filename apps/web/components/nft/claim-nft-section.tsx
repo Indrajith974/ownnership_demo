@@ -10,7 +10,7 @@ import { MintButton } from './mint-button';
 import { useSiweAuth } from '@/hooks/use-siwe-auth';
 import { useAccount } from 'wagmi';
 import { 
-  Certificate, 
+  Award, 
   Upload, 
   Hash, 
   User, 
@@ -129,7 +129,7 @@ export function ClaimNFTSection() {
         className="text-center space-y-4"
       >
         <div className="flex items-center justify-center space-x-3">
-          <Certificate className="w-12 h-12 text-purple-600" />
+          <Award className="w-12 h-12 text-purple-600" />
           <div>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
               Claim Your Ownership NFT
@@ -275,7 +275,7 @@ export function ClaimNFTSection() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
-                <Certificate className="w-5 h-5 mr-2" />
+                <Award className="w-5 h-5 mr-2" />
                 Mint Certificate
               </CardTitle>
               <CardDescription>
@@ -303,7 +303,7 @@ export function ClaimNFTSection() {
               ) : (
                 <div className="space-y-4">
                   <div className="bg-muted rounded-lg p-4 text-center">
-                    <Certificate className="w-12 h-12 mx-auto text-muted-foreground mb-2" />
+                    <Award className="w-12 h-12 mx-auto text-muted-foreground mb-2" />
                     <p className="text-sm text-muted-foreground">
                       Complete the content details to enable minting
                     </p>

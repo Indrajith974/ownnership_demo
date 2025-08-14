@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useAccount, useContractWrite, useWaitForTransaction, useNetwork } from 'wagmi';
+import { useAccount, useWriteContract, useWaitForTransactionReceipt, useChainId } from 'wagmi';
 import { parseEther } from 'viem';
 import { toast } from '@/components/ui/use-toast';
 
@@ -74,36 +74,31 @@ interface UseMintOwnershipNFTReturn {
 
 export function useMintOwnershipNFT(): UseMintOwnershipNFTReturn {
   const { address } = useAccount();
-  const { chain } = useNetwork();
+  const chainId = useChainId();
   const [txSuccess, setTxSuccess] = useState(false);
   const [txError, setTxError] = useState<Error | null>(null);
   const [tokenId, setTokenId] = useState<bigint>();
 
   // Get contract address for current chain
-  const contractAddress = getContractAddress(chain.id); 
+  const contractAddress = getContractAddress(chainId); 
   const isSupported = Boolean(contractAddress && contractAddress !== '0x0000000000000000000000000000000000000000');
 
   // Contract write hook
   const {
     data: writeData,
-    write,
+    writeContract,
     error: writeError,
-    isLoading: isWriteLoading,
+    isPending: isWriteLoading,
     reset: resetWrite
-  } = useContractWrite({
-    address: contractAddress as `0x${string}`,
-    abi: OWNERSHIP_NFT_ABI,
-    functionName: 'mintCertificate',
-  });
+  } = useWriteContract();
 
   // Wait for transaction confirmation
   const {
     data: txData,
     isLoading: isTxLoading,
     error: txWaitError
-  } = useWaitForTransaction({
-    hash: writeData?.hash,
-    enabled: Boolean(writeData?.hash),
+  } = useWaitForTransactionReceipt({
+    hash: writeData,
   });
 
   // Combined loading state
@@ -129,10 +124,10 @@ export function useMintOwnershipNFT(): UseMintOwnershipNFTReturn {
 
       toast({
         title: '🎉 NFT Minted Successfully!',
-        description: `Your ownership certificate has been minted on ${chain?.name || 'blockchain'}`,
+        description: `Your ownership certificate has been minted on blockchain`,
       });
     }
-  }, [txData, chain?.name]);
+  }, [txData]);
 
   // Handle errors
   useEffect(() => {
@@ -163,7 +158,7 @@ export function useMintOwnershipNFT(): UseMintOwnershipNFTReturn {
     if (!isSupported) {
       toast({
         title: 'Unsupported Network',
-        description: `Minting is not available on ${chain?.name || 'this network'}`,
+        description: `Minting is not available on this network`,
         variant: 'destructive',
       });
       return;
@@ -175,7 +170,10 @@ export function useMintOwnershipNFT(): UseMintOwnershipNFTReturn {
     setTokenId(undefined);
 
     // Call contract write
-    write({
+    writeContract({
+      address: contractAddress as `0x${string}`,
+      abi: OWNERSHIP_NFT_ABI,
+      functionName: 'mintCertificate',
       args: [
         address,
         params.contentHash,
@@ -202,7 +200,7 @@ export function useMintOwnershipNFT(): UseMintOwnershipNFTReturn {
     isMinting,
     txSuccess,
     txError,
-    txHash: writeData?.hash,
+    txHash: writeData,
     tokenId,
     reset,
     isSupported,

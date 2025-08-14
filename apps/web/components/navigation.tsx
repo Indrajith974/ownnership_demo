@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { WalletConnectButton } from './wallet/connect-button';
+import { WalletButton } from './wallet/wallet-button';
 import { ThemeToggle } from './theme-toggle';
 import { 
   Home, 
@@ -67,7 +67,7 @@ export function Navigation() {
           {/* Right side actions */}
           <div className="flex items-center space-x-4">
             <ThemeToggle />
-            <WalletConnectButton />
+            <WalletButton />
           </div>
         </div>
 

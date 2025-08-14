@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { UploadAndFingerprint } from './upload-and-fingerprint';
 import { NFTProofCard } from './nft-proof-card';
-import { MintButton } from '../nft/mint-button';
+import { MintButton } from '@/components/nft/mint-button'; 
 import { YouTubeImport } from '@/components/integrations/youtube-import';
 import { InstagramImport } from '@/components/integrations/instagram-import';
 import { useSiweAuth } from '@/hooks/use-siwe-auth';
@@ -615,4 +615,5 @@ export function FingerprintMintDashboard() {
       </AnimatePresence>
     </div>
   );
+}
 }
