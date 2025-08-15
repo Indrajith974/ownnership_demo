@@ -1,0 +1,33 @@
+# The Ownership Layer - Working Requirements for Python 3.13
+# Core API Framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+pydantic>=2.5.0
+python-dotenv>=1.0.0
+
+# Database
+sqlalchemy>=2.0.0
+redis>=5.0.0
+
+# For development - SQLite (no PostgreSQL for now to avoid build issues)
+# psycopg2-binary  # Skip this for now
+
+# Authentication & Security
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+
+# Basic utilities
+requests>=2.31.0
+numpy>=1.24.0
+
+# Image processing (use pre-built wheel)
+Pillow>=10.0.0
+
+# Skip heavy ML libraries for now - install separately if needed
+# openai
+# torch
+# transformers
+# sentence-transformers
+# librosa
+# imagehash

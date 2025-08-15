@@ -1,0 +1,44 @@
+# The Ownership Layer - Backend Requirements
+# Core API Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+pydantic==2.5.0
+
+# Database
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+redis==5.0.1
+supabase==2.3.4
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-dotenv==1.0.0
+
+# AI/ML Libraries
+openai==1.3.7
+sentence-transformers==2.2.2
+transformers==4.35.2
+torch>=2.6.0
+numpy>=1.25.2
+scikit-learn>=1.3.2
+
+# Image Processing
+pillow==10.1.0
+imagehash==4.3.1
+
+# Audio Processing
+librosa>=0.10.1
+whisper-openai>=20231117
+
+# Blockchain & Web3
+web3>=6.11.3
+eth-account>=0.9.0
+
+# IPFS & Storage
+ipfs-api==0.2.3
+
+# Additional utilities
+supabase==2.0.2
+requests==2.31.0
